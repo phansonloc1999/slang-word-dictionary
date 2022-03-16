@@ -73,7 +73,7 @@ public class Program {
     private static void readSlangsFromFile() {
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new File("Data/slang,txt"), "UTF-8");
+            scanner = new Scanner(new File("Data/slang.txt"), "UTF-8");
             scanner.nextLine(); // Skip first line
             String[] tokens = null;
             while (scanner.hasNextLine()) {
@@ -93,11 +93,49 @@ public class Program {
         scanner.close();
     }
 
+    private static void addSlang() {
+        System.out.println("=======================Them slang=======================");
+        System.out.print("Nhap slang muon them: ");
+        Scanner scanner = new Scanner(System.in);
+        String slang = scanner.nextLine();
+        System.out.print("So luong nghia cua slang: ");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        String[] meanings = new String[num];
+        for (int i = 0; i < num; i++) {
+            System.out.print("Nhap nghia thu " + i + ": ");
+            meanings[i] = scanner.nextLine();
+        }
+        my_dict.put(slang, meanings);
+        writeSlangsToFile();
+    }
+
+    private static void writeSlangsToFile() {
+        try {
+            FileWriter fWriter = new FileWriter(new File("Data/slang.txt"));
+            Enumeration<String> e = my_dict.keys();
+            fWriter.write("Slang`Meaning\n");
+            while (e.hasMoreElements()) {
+                String slang = e.nextElement();
+                fWriter.write(slang + "`");
+                String[] meanings = my_dict.get(slang);
+                for (int i = 0; i < meanings.length; i++) {
+                    fWriter.write(meanings[i] + "\n");
+                }
+
+            }
+            fWriter.close();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
     public static void main(String[] args) {
         my_dict = new Hashtable<String, String[]>();
         readSlangsFromFile();
-        searchSlang();
-        searchKeywordInMeaning();
-        showHistory();
+        // searchSlang();
+        // searchKeywordInMeaning();
+        // showHistory();
+        addSlang();
     }
 }
