@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -15,10 +16,27 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         String slang = scanner.nextLine();
         String[] meanings = my_dict.get(slang);
-        if (meanings.length > 0) {
+        if (meanings != null) {
             System.out.println("Y nghia cua tu " + slang + " la :");
             for (String meaning : meanings) {
                 System.out.println(meaning);
+            }
+        }
+    }
+
+    private static void searchKeywordInMeaning() {
+        System.out.println("=======================Tim kiem keyword=======================");
+        System.out.print("Nhap tu khoa can tim kiem: ");
+        Scanner scanner = new Scanner(System.in);
+        String keyword = scanner.nextLine();
+        Enumeration<String> e = my_dict.keys();
+        while (e.hasMoreElements()) {
+            String slang = e.nextElement();
+            String[] meanings = my_dict.get(slang);
+            for (int i = 0; i < meanings.length; i++) {
+                if (meanings[i].contains(keyword)) {
+                    System.out.println("Slang: " + slang + " Meaning: " + meanings[i]);
+                }
             }
         }
     }
@@ -50,5 +68,6 @@ public class Program {
         my_dict = new Hashtable<String, String[]>();
         readSlangsFromFile();
         searchSlang();
+        searchKeywordInMeaning();
     }
 }
