@@ -1,5 +1,8 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
@@ -9,6 +12,31 @@ import java.util.Scanner;
  */
 public class Program {
     private static Hashtable<String, String[]> my_dict;
+
+    private static void writeToHistory(String slang) {
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter("Data/history.txt", true));
+            out.write(slang + "\n");
+            out.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    private static void showHistory() {
+        try {
+            Scanner scanner = new Scanner(new File("Data/history.txt"));
+            System.out.println("=======================Lich su tim kiem Slang=======================");
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 
     private static void searchSlang() {
         System.out.println("=======================Tim kiem slang=======================");
@@ -22,6 +50,7 @@ public class Program {
                 System.out.println(meaning);
             }
         }
+        writeToHistory(slang);
     }
 
     private static void searchKeywordInMeaning() {
@@ -69,5 +98,6 @@ public class Program {
         readSlangsFromFile();
         searchSlang();
         searchKeywordInMeaning();
+        showHistory();
     }
 }
