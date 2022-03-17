@@ -134,30 +134,26 @@ public class Program {
         System.out.println("=======================Chinh sua slang=======================");
         System.out.print("Nhap slang muon chinh sua: ");
         Scanner scanner = new Scanner(System.in);
-        String slangToEdit = scanner.nextLine();
-        Enumeration<String> e = my_dict.keys();
-        while (e.hasMoreElements()) {
-            String slang = e.nextElement();
-            if (slang.equals(slangToEdit)) {
-                System.out.println("Slang: " + slang);
-                String[] meanings = my_dict.get(slang);
-                for (int i = 0; i < meanings.length; i++) {
-                    System.out.println("Nghia thu " + (i + 1) + " :" + meanings[i]);
-                }
-                System.out.println("==============================================");
-
-                System.out.print("Nhap so luong nghia cua slang: ");
-                int numOfMeanings = scanner.nextInt();
-                scanner.nextLine();
-
-                String[] newMeanings = new String[numOfMeanings];
-                for (int i = 0; i < numOfMeanings; i++) {
-                    System.out.print("Nhap nghia thu " + (i + 1) + " cua slang: ");
-                    newMeanings[i] = scanner.nextLine();
-                }
-                my_dict.put(slang, newMeanings);
-                return;
+        String slang = scanner.nextLine();
+        if (my_dict.get(slang) != null) {
+            System.out.println("Slang: " + slang);
+            String[] meanings = my_dict.get(slang);
+            for (int i = 0; i < meanings.length; i++) {
+                System.out.println("Nghia thu " + (i + 1) + " :" + meanings[i]);
             }
+            System.out.println("==============================================");
+
+            System.out.print("Nhap so luong nghia cua slang: ");
+            int numOfMeanings = scanner.nextInt();
+            scanner.nextLine();
+
+            String[] newMeanings = new String[numOfMeanings];
+            for (int i = 0; i < numOfMeanings; i++) {
+                System.out.print("Nhap nghia thu " + (i + 1) + " cua slang: ");
+                newMeanings[i] = scanner.nextLine();
+            }
+            my_dict.put(slang, newMeanings);
+            return;
         }
 
         System.out.println("Khong tim thay slang da nhap!");
