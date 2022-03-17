@@ -159,14 +159,38 @@ public class Program {
         System.out.println("Khong tim thay slang da nhap!");
     }
 
+    private static void deleteSlang() {
+        System.out.println("=======================Chinh sua slang=======================");
+        System.out.print("Nhap slang muon xoa: ");
+        Scanner scanner = new Scanner(System.in);
+        String slangToDelete = scanner.nextLine();
+        if (my_dict.get(slangToDelete) != null) {
+            do {
+                System.out.print("Ban co xac nhan muon xoa slang " + slangToDelete + " khong?(Y/N): ");
+                String confirmation = scanner.nextLine();
+                if (confirmation.equals("Y") || confirmation.equals("y")) {
+                    my_dict.remove(slangToDelete);
+                    System.out.println("Da xoa slang " + slangToDelete);
+                    return;
+                } else if (confirmation.equals("N") || confirmation.equals("n")) {
+                    System.out.println("Khong xoa slang " + slangToDelete);
+                    return;
+                }
+            } while (true);
+        }
+
+        System.out.println("Khong tim thay slang da nhap!");
+    }
+
     public static void main(String[] args) {
         my_dict = new Hashtable<String, String[]>();
         readSlangsFromFile();
         // searchSlang();
         // searchKeywordInMeaning();
         // showHistory();
-        // addSlang();
-        editSlang();
+        addSlang();
+        // editSlang();
+        // deleteSlang();
         writeSlangsToFile();
     }
 }
