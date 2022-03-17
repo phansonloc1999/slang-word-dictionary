@@ -70,10 +70,10 @@ public class Program {
         }
     }
 
-    private static void readSlangsFromFile() {
+    private static void readSlangsFromFile(String filePath) {
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new File("Data/slang.txt"), "UTF-8");
+            scanner = new Scanner(new File(filePath), "UTF-8");
             scanner.nextLine(); // Skip first line
             String[] tokens = null;
             while (scanner.hasNextLine()) {
@@ -182,15 +182,20 @@ public class Program {
         System.out.println("Khong tim thay slang da nhap!");
     }
 
+    public static void resetOriginalSlangs() {
+        readSlangsFromFile("Data/slang_original.txt");
+    }
+
     public static void main(String[] args) {
         my_dict = new Hashtable<String, String[]>();
-        readSlangsFromFile();
-        // searchSlang();
+        readSlangsFromFile("Data/slang.txt");
+        searchSlang();
         // searchKeywordInMeaning();
         // showHistory();
-        addSlang();
+        // addSlang();
         // editSlang();
         // deleteSlang();
-        writeSlangsToFile();
+        // resetOriginalSlangs();
+        // writeSlangsToFile();
     }
 }
