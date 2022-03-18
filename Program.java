@@ -189,7 +189,7 @@ public class Program {
     }
 
     public static String randomizeSlang() {
-        Random generator = new Random(System.currentTimeMillis());
+        Random generator = new Random();
         Enumeration<String> keyEnums = my_dict.keys();
         int randNum = generator.nextInt(my_dict.size());
         String[] keys = new String[my_dict.size()];
@@ -202,10 +202,37 @@ public class Program {
         return slang;
     }
 
+    private static void slangQuiz() {
+        System.out.println("=======================Do vui slang=======================");
+        String slang = randomizeSlang();
+        String[] answers = new String[4];
+        Random random = new Random();
+        int randNum = random.nextInt(4);
+        answers[randNum] = my_dict.get(slang)[0];
+        for (int i = 0; i < answers.length; i++) {
+            if (i != randNum)
+                answers[i] = my_dict.get(randomizeSlang())[0];
+        }
+        System.out.println("Nghia cua tu slang " + slang + " la gi ?");
+        for (int i = 0; i < answers.length; i++) {
+            System.out.println((i + 1) + ". " + answers[i]);
+        }
+        System.out.print("Nhap cau tra loi cua ban: ");
+        Scanner scanner = new Scanner(System.in);
+        int answer = scanner.nextInt();
+        scanner.nextLine();
+
+        if (answer == randNum + 1) {
+            System.out.println("Chuc mung ban tra loi dung!");
+        } else {
+            System.out.println("Rat tiec ban tra loi sai! Dap an dung la " + (randNum + 1));
+        }
+    }
+
     public static void main(String[] args) {
         my_dict = new Hashtable<String, String[]>();
         readSlangsFromFile("Data/slang.txt");
-        searchSlang();
+        // searchSlang();
         // searchKeywordInMeaning();
         // showHistory();
         // addSlang();
@@ -213,6 +240,7 @@ public class Program {
         // deleteSlang();
         // resetOriginalSlangs();
         // writeSlangsToFile();
-        System.out.println("Slang ngau nhien la: " + randomizeSlang());
+        // System.out.println("Slang ngau nhien la: " + randomizeSlang());
+        slangQuiz();
     }
 }
