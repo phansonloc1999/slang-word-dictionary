@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -49,7 +50,8 @@ public class Program {
             for (String meaning : meanings) {
                 System.out.println(meaning);
             }
-        }
+        } else
+            System.out.println("Khong tim thay slang da nhap!");
         writeToHistory(slang);
     }
 
@@ -186,6 +188,20 @@ public class Program {
         readSlangsFromFile("Data/slang_original.txt");
     }
 
+    public static String randomizeSlang() {
+        Random generator = new Random(System.currentTimeMillis());
+        Enumeration<String> keyEnums = my_dict.keys();
+        int randNum = generator.nextInt(my_dict.size());
+        String[] keys = new String[my_dict.size()];
+        int i = 0;
+        String slang = null;
+        do {
+            slang = keyEnums.nextElement();
+            i++;
+        } while (keyEnums.hasMoreElements() && i < randNum);
+        return slang;
+    }
+
     public static void main(String[] args) {
         my_dict = new Hashtable<String, String[]>();
         readSlangsFromFile("Data/slang.txt");
@@ -197,5 +213,6 @@ public class Program {
         // deleteSlang();
         // resetOriginalSlangs();
         // writeSlangsToFile();
+        System.out.println("Slang ngau nhien la: " + randomizeSlang());
     }
 }
