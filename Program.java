@@ -25,7 +25,7 @@ public class Program {
         }
     }
 
-    private static void showHistory() {
+    private static void showSearchHistory() {
         try {
             Scanner scanner = new Scanner(new File("Data/history.txt"));
             System.out.println("=======================Lich su tim kiem Slang=======================");
@@ -159,6 +159,7 @@ public class Program {
         }
 
         System.out.println("Khong tim thay slang da nhap!");
+        writeSlangsToFile();
     }
 
     private static void deleteSlang() {
@@ -182,6 +183,7 @@ public class Program {
         }
 
         System.out.println("Khong tim thay slang da nhap!");
+        writeSlangsToFile();
     }
 
     public static void resetOriginalSlangs() {
