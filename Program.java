@@ -202,8 +202,8 @@ public class Program {
         return slang;
     }
 
-    private static void slangQuiz() {
-        System.out.println("=======================Do vui slang=======================");
+    private static void guessMeaning() {
+        System.out.println("=======================Do vui chon nghia dung cho slang=======================");
         String slang = randomizeSlang();
         String[] answers = new String[4];
         Random random = new Random();
@@ -214,6 +214,33 @@ public class Program {
                 answers[i] = my_dict.get(randomizeSlang())[0];
         }
         System.out.println("Nghia cua tu slang " + slang + " la gi ?");
+        for (int i = 0; i < answers.length; i++) {
+            System.out.println((i + 1) + ". " + answers[i]);
+        }
+        System.out.print("Nhap cau tra loi cua ban: ");
+        Scanner scanner = new Scanner(System.in);
+        int answer = scanner.nextInt();
+        scanner.nextLine();
+
+        if (answer == randNum + 1) {
+            System.out.println("Chuc mung ban tra loi dung!");
+        } else {
+            System.out.println("Rat tiec ban tra loi sai! Dap an dung la " + (randNum + 1));
+        }
+    }
+
+    private static void guessSlang() {
+        System.out.println("=======================Do vui chon slang dung voi nghia=======================");
+        String slang = randomizeSlang();
+        String[] answers = new String[4];
+        Random random = new Random();
+        int randNum = random.nextInt(4);
+        answers[randNum] = slang;
+        for (int i = 0; i < answers.length; i++) {
+            if (i != randNum)
+                answers[i] = randomizeSlang();
+        }
+        System.out.println("Slang nao co nghia nhu sau: " + my_dict.get(slang)[0] + " ?");
         for (int i = 0; i < answers.length; i++) {
             System.out.println((i + 1) + ". " + answers[i]);
         }
@@ -241,6 +268,7 @@ public class Program {
         // resetOriginalSlangs();
         // writeSlangsToFile();
         // System.out.println("Slang ngau nhien la: " + randomizeSlang());
-        slangQuiz();
+        // guessMeaning();
+        guessSlang();
     }
 }
