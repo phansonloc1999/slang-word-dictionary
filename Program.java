@@ -163,7 +163,7 @@ public class Program {
     }
 
     private static void deleteSlang() {
-        System.out.println("=======================Chinh sua slang=======================");
+        System.out.println("=======================Xoa slang=======================");
         System.out.print("Nhap slang muon xoa: ");
         Scanner scanner = new Scanner(System.in);
         String slangToDelete = scanner.nextLine();
