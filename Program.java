@@ -46,7 +46,7 @@ public class Program {
         String slang = scanner.nextLine();
         String[] meanings = my_dict.get(slang);
         if (meanings != null) {
-            System.out.println("Y nghia cua tu " + slang + " la :");
+            System.out.print("Y nghia cua tu " + slang + " la : ");
             for (String meaning : meanings) {
                 System.out.println(meaning);
             }
