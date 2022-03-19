@@ -258,19 +258,82 @@ public class Program {
         }
     }
 
+    private static void showMenu() {
+        int choice;
+        do {
+            System.out.println("=======================Menu=======================");
+            System.out.println("1. Tim kiem slang");
+            System.out.println("2. Tim kiem tu khoa trong nghia cua slang");
+            System.out.println("3. Hien thi lich su tim kiem slang");
+            System.out.println("4. Them slang");
+            System.out.println("5. Chinh sua slang");
+            System.out.println("6. Xoa slang");
+            System.out.println("7. Reset danh sach slang ban dau");
+            System.out.println("8. Ghi slang ra file");
+            System.out.println("9. Hien thi slang ngau nhien");
+            System.out.println("10. Doan nghia cua slang");
+            System.out.println("11. Doan slang dua theo nghia");
+            System.out.println("-1. Thoat");
+            System.out.print("Nhap lua chon cua ban: ");
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    searchSlang();
+                    break;
+
+                case 2:
+                    searchKeywordInMeaning();
+                    break;
+
+                case 3:
+                    showSearchHistory();
+                    break;
+
+                case 4:
+                    addSlang();
+                    break;
+
+                case 5:
+                    editSlang();
+                    break;
+
+                case 6:
+                    deleteSlang();
+                    break;
+
+                case 7:
+                    resetOriginalSlangs();
+                    break;
+
+                case 8:
+                    writeSlangsToFile();
+                    break;
+
+                case 9:
+                    System.out.println("Tu slang ngau nhien la: " + randomizeSlang());
+                    break;
+
+                case 10:
+                    guessMeaning();
+                    break;
+
+                case 11:
+                    guessSlang();
+                    break;
+
+                case -1:
+                    return;
+            }
+        } while (choice != -1);
+
+    }
+
     public static void main(String[] args) {
         my_dict = new Hashtable<String, String[]>();
         readSlangsFromFile("Data/slang.txt");
-        // searchSlang();
-        // searchKeywordInMeaning();
-        // showHistory();
-        // addSlang();
-        // editSlang();
-        // deleteSlang();
-        // resetOriginalSlangs();
-        // writeSlangsToFile();
-        // System.out.println("Slang ngau nhien la: " + randomizeSlang());
-        // guessMeaning();
-        guessSlang();
+        showMenu();
     }
 }
