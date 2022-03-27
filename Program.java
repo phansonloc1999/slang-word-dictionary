@@ -1,3 +1,5 @@
+// % tham khao tu nguoi khac, internet: 0%
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
